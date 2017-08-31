@@ -15,6 +15,9 @@
 		1116CA771F561EC5006AEF9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1116CA751F561EC5006AEF9D /* LaunchScreen.storyboard */; };
 		1116CA821F561EC5006AEF9D /* NotesOnlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116CA811F561EC5006AEF9D /* NotesOnlineTests.swift */; };
 		1116CA8D1F561EC5006AEF9D /* NotesOnlineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116CA8C1F561EC5006AEF9D /* NotesOnlineUITests.swift */; };
+		1116CA9D1F561FE8006AEF9D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1116CA9C1F561FE8006AEF9D /* CloudKit.framework */; };
+		1116CA9F1F5626D7006AEF9D /* CKHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116CA9E1F5626D7006AEF9D /* CKHandler.swift */; };
+		1116CAA11F562714006AEF9D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1116CAA01F562714006AEF9D /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,10 @@
 		1116CA881F561EC5006AEF9D /* NotesOnlineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotesOnlineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1116CA8C1F561EC5006AEF9D /* NotesOnlineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesOnlineUITests.swift; sourceTree = "<group>"; };
 		1116CA8E1F561EC5006AEF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1116CA9A1F561FC2006AEF9D /* NotesOnline.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotesOnline.entitlements; sourceTree = "<group>"; };
+		1116CA9C1F561FE8006AEF9D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		1116CA9E1F5626D7006AEF9D /* CKHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKHandler.swift; sourceTree = "<group>"; };
+		1116CAA01F562714006AEF9D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1116CA9D1F561FE8006AEF9D /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +91,7 @@
 				1116CA801F561EC5006AEF9D /* NotesOnlineTests */,
 				1116CA8B1F561EC5006AEF9D /* NotesOnlineUITests */,
 				1116CA681F561EC5006AEF9D /* Products */,
+				1116CA9B1F561FE8006AEF9D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +108,7 @@
 		1116CA691F561EC5006AEF9D /* NotesOnline */ = {
 			isa = PBXGroup;
 			children = (
+				1116CA9A1F561FC2006AEF9D /* NotesOnline.entitlements */,
 				1116CA6A1F561EC5006AEF9D /* AppDelegate.swift */,
 				1116CA6C1F561EC5006AEF9D /* MasterViewController.swift */,
 				1116CA6E1F561EC5006AEF9D /* DetailViewController.swift */,
@@ -106,6 +116,8 @@
 				1116CA731F561EC5006AEF9D /* Assets.xcassets */,
 				1116CA751F561EC5006AEF9D /* LaunchScreen.storyboard */,
 				1116CA781F561EC5006AEF9D /* Info.plist */,
+				1116CA9E1F5626D7006AEF9D /* CKHandler.swift */,
+				1116CAA01F562714006AEF9D /* TestViewController.swift */,
 			);
 			path = NotesOnline;
 			sourceTree = "<group>";
@@ -126,6 +138,14 @@
 				1116CA8E1F561EC5006AEF9D /* Info.plist */,
 			);
 			path = NotesOnlineUITests;
+			sourceTree = "<group>";
+		};
+		1116CA9B1F561FE8006AEF9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1116CA9C1F561FE8006AEF9D /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +218,14 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 5PJ639S4VT;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					1116CA7C1F561EC5006AEF9D = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -265,8 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1116CAA11F562714006AEF9D /* TestViewController.swift in Sources */,
 				1116CA6F1F561EC5006AEF9D /* DetailViewController.swift in Sources */,
 				1116CA6D1F561EC5006AEF9D /* MasterViewController.swift in Sources */,
+				1116CA9F1F5626D7006AEF9D /* CKHandler.swift in Sources */,
 				1116CA6B1F561EC5006AEF9D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NotesOnline/NotesOnline.entitlements;
 				DEVELOPMENT_TEAM = 5PJ639S4VT;
 				INFOPLIST_FILE = NotesOnline/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -434,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NotesOnline/NotesOnline.entitlements;
 				DEVELOPMENT_TEAM = 5PJ639S4VT;
 				INFOPLIST_FILE = NotesOnline/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

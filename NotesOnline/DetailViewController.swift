@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class DetailViewController: UIViewController {
 
@@ -17,7 +18,9 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail = detailItem {
             if let label = detailDescriptionLabel {
-                label.text = detail.description
+                let record = detail as CKRecord
+                let body = record["body"] as! String
+                label.text = body
             }
         }
     }
@@ -33,7 +36,7 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    var detailItem: NSDate? {
+    var detailItem: CKRecord? {
         didSet {
             // Update the view.
             configureView()

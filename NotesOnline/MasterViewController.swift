@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import CloudKit
 
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,9 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        //Testing cloudkit
+        CKHandler.FetchAllPublicNotes(onComplete: receivedNotesRecords)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +38,19 @@ class MasterViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func receivedNotesRecords(records: [CKRecord]) {
+        print("gor records!: \(records)")
+        
+        
+        for record in records {
+            objects.insert(record, at: 0)
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+        
+        tableView.reloadData()
     }
 
     func insertNewObject(_ sender: Any) {
@@ -48,7 +64,7 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row] as! CKRecord
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
@@ -70,8 +86,8 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = objects[indexPath.row] as! CKRecord
+        cell.textLabel!.text = object["title"] as! String
         return cell
     }
 
